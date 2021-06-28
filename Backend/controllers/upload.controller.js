@@ -1,4 +1,5 @@
 const uploadFile = require('../services/upload');
+const readFileInMemory = require('../utils/index');
 
 const upload = async (req, res) => {
 	try {
@@ -22,6 +23,7 @@ const upload = async (req, res) => {
 			message: `Could not upload the file: ${req.file.originalname}. ${err}`,
 		});
 	}
+	readFileInMemory();
 };
 
 module.exports = {
