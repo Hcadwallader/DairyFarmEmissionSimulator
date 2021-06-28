@@ -1,25 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import { uploadFarmData } from './services/uploadService';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const onChangeHandler = (e) => {
+		uploadFarmData(e.target.files[0]).then((data) => console.log(data));
+	};
+	return (
+		<div>
+			<label>Upload Your File </label>
+			<input
+				type="file"
+				className="form-control"
+				onChange={(e) => onChangeHandler(e)}
+			/>
+		</div>
+	);
 }
 
 export default App;
