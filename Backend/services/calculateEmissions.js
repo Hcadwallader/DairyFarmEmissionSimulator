@@ -1,3 +1,7 @@
+let CalculateTotalEmissions = (farmData) => {
+	console.log('calc emissions' + JSON.stringify(farmData));
+};
+
 let CalculateFossilFuelsEmissions = () => {
 	console.log('fossil fuels');
 };
@@ -10,8 +14,4 @@ let CalculateFoodPurchasesEmissions = () => {
 	console.log('food purchase');
 };
 
-module.exports = {
-	CalculateFossilFuelsEmissions,
-	CalculateElectricityEmissions,
-	CalculateFoodPurchasesEmissions,
-};
+module.exports = CalculateTotalEmissions;

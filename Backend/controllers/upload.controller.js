@@ -1,5 +1,7 @@
-const uploadFile = require('../services/upload');
-const readFileInMemory = require('../utils/index');
+const uploadFile = require('../services/uploadFile');
+const readFarmData = require('../services/readFarmData');
+const CalculateTotalEmissions = require('../services/calculateEmissions');
+const NodeCache = require('node-cache');
 
 const upload = async (req, res) => {
 	try {
@@ -23,7 +25,10 @@ const upload = async (req, res) => {
 			message: `Could not upload the file: ${req.file.originalname}. ${err}`,
 		});
 	}
-	readFileInMemory();
+	const myCache = new NodeCache();
+	readFarmData(myCache);
+	let value = myCache.get('farmData');
+	console.log(value);
 };
 
 module.exports = {
