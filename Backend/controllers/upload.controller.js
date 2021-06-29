@@ -1,6 +1,5 @@
 const uploadFile = require('../services/uploadFile');
 const readFarmData = require('../services/readFarmData');
-const CalculateTotalEmissions = require('../services/calculateEmissions');
 const NodeCache = require('node-cache');
 
 const upload = async (req, res) => {
@@ -27,8 +26,6 @@ const upload = async (req, res) => {
 	}
 	const myCache = new NodeCache();
 	readFarmData(myCache);
-	let value = myCache.get('farmData');
-	console.log(value);
 };
 
 module.exports = {

@@ -1,8 +1,8 @@
-const calculateEmissionsForFarm = require('../services/calculateEmissions');
+const CalculateEmissionsForFarm = require('../services/calculateEmissions');
 
 const farm = async (req, res) => {
 	try {
-		await calculateEmissionsForFarm(req, res);
+		await CalculateEmissionsForFarm(req, res);
 		if (req.farm == undefined) {
 			return res
 				.status(400)
