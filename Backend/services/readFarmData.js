@@ -87,10 +87,13 @@ const readFarmData = (myCache) => {
 
 				rowNumber = rowNumber + 1;
 			} while (farmName != null);
+			myCache.set('farmData', details);
 			return details; // if the name is null assume we've reached the end of the table
 		})
 		.then((details) => {
-			myCache.set('farmData', details);
+			let emissions = CalculateTotalEmissions(details);
+			console.log(emissions);
+			myCache.set('averageEmissions', emissions);
 		});
 	return details;
 };

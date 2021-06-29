@@ -1,13 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('../controllers/upload.controller');
+const uploadcontroller = require('../controllers/upload.controller');
+const farmcontroller = require('../controllers/farm.controller');
 
 let routes = (app) => {
-	router.post('/upload', controller.upload);
+	router.post('/upload', uploadcontroller.upload);
 
-    router.get('/', function (req, res) {
-        res.send('Hello world');
-    });
+	router.get('/', function (req, res) {
+		res.send('Hello world');
+	});
+
+	router.post('/farm', farmcontroller.farm);
 
 	app.use(router);
 };
