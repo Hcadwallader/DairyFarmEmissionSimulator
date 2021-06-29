@@ -1,21 +1,44 @@
 import './App.css';
-import React from 'react';
-import { uploadFarmData } from './services/uploadService';
+import React, { useState } from 'react';
+import { uploadInitialFarmData, addNewFarm } from './services/uploadService';
+import Upload from './components/upload';
+import FarmDataForm from './components/farmDataForm';
 
-function App() {
-	const onChangeHandler = (e) => {
-		uploadFarmData(e.target.files[0]).then((data) => console.log(data));
+const App = () => {
+	const [farmDetails, setFarmDetails] = useState({
+		name: '',
+		size: '',
+		numberOfCows: '',
+		quatityOfMilk: '',
+		tractors: '',
+		milkMachines: '',
+	});
+
+	const onFileUpload = (e) => {
+		uploadInitialFarmData(e.target.files[0]).then((data) =>
+			console.log(data)
+		);
 	};
+
+	const handleFarmFormChange = (e) => {
+		const { name, value } = e.target;
+		setFarmDetails({ ...farmDetails, [name]: value });
+	};
+
+	const handleSubmitFarmForm = (e, farmDetails) => {
+		addNewFarm(farmDetails);
+	};
+
 	return (
-		<div>
-			<label>Upload Your File </label>
-			<input
-				type="file"
-				className="form-control"
-				onChange={(e) => onChangeHandler(e)}
+		<>
+			<Upload onFileUpload={onFileUpload} />
+			<FarmDataForm
+				handleFarmFormChange={handleFarmFormChange}
+				handleSubmitFarmForm={handleSubmitFarmForm}
+				farmDetails={farmDetails}
 			/>
-		</div>
+		</>
 	);
-}
+};
 
 export default App;
