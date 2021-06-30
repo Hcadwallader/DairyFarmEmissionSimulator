@@ -30,11 +30,12 @@ const App = () => {
 		setFarmDetails({ ...farmDetails, [name]: value });
 	};
 
-	const handleSubmitFarmForm = (e, farmDetails) => {
-		const emissionsResponse = addNewFarm(farmDetails);
-		setFarmDataAdded(true);
-		// setFarmDataAdded(emissionsResponse.ok);
-		// setEmissionData(emissionsResponse.data);
+	const handleSubmitFarmForm = (e) => {
+		addNewFarm(farmDetails).then((data) => {
+			setFarmDataAdded(data.perLiterOfMilk);
+			setEmissionData(data);
+		});
+		//setFarmDataAdded(true);
 	};
 
 	return (

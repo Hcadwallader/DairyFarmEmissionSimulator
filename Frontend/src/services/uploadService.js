@@ -5,7 +5,7 @@ export const uploadInitialFarmData = async (data) => {
 		method: 'POST',
 		body: formData,
 	});
-	return response.ok;
+	return response.json();
 };
 
 export const addNewFarm = async (data) => {
@@ -14,5 +14,6 @@ export const addNewFarm = async (data) => {
 		method: 'POST',
 		body: JSON.stringify(data),
 	});
-	return response.json();
+	const emissionsResponse = await response.json();
+	return emissionsResponse;
 };
