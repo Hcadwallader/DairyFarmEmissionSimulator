@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { uploadInitialFarmData, addNewFarm } from './services/uploadService';
 import Upload from './components/upload';
 import FarmDataForm from './components/farmDataForm';
-import EmissionReport from './components/EmissionsReport';
+import EmissionReport from './components/emissionsReport';
 
 const App = () => {
 	const [fileUploaded, setFileUploaded] = useState(false);
@@ -20,7 +20,6 @@ const App = () => {
 
 	const onFileUpload = (e) => {
 		uploadInitialFarmData(e.target.files[0]).then((data) => {
-			console.log(data);
 			setFileUploaded(data);
 		});
 	};
@@ -32,10 +31,9 @@ const App = () => {
 
 	const handleSubmitFarmForm = (e) => {
 		addNewFarm(farmDetails).then((data) => {
-			setFarmDataAdded(data.perLiterOfMilk);
+			setFarmDataAdded(data.perLitreOfMilk);
 			setEmissionData(data);
 		});
-		//setFarmDataAdded(true);
 	};
 
 	return (

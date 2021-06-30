@@ -1,5 +1,5 @@
 
-const CalculateEmissionsForInputtedFarm = require('../services/CalculateEmissionsForInputtedFarm.js');
+const CalculateEmissionsForInputtedFarm = require('../services/calculateEmissionsForIndividualFarm.js');
 
 const farm = async (req, res) => {
 	try {

@@ -1,21 +1,14 @@
+const NodeCache = require('node-cache');
 
-let calculateTotalEmissionsForFarmData = (farmData) => {
-	let scope1AveragePerAcre = CalculateFossilFuelsEmissions(farmData);
-	console.log(scope1AveragePerAcre);
-	let scope2AveragePerUnit = CalculateElectricityEmissions(farmData);
-	console.log(scope2AveragePerUnit);
-	let scope3AveragePerCow = CalculateFoodPurchasesEmissions(farmData);
-	console.log(scope3AveragePerCow);
-
+let CalculateTotalAverageEmissions = (farmData) => {
 	return {
-		scope1AveragePerAcre: scope1AveragePerAcre,
-		scope2AveragePerUnit: scope2AveragePerUnit,
-		scope3AveragePerCow: scope3AveragePerCow,
+		scope1AveragePerAcre: CalculateFossilFuelsEmissions(farmData),
+		scope2AveragePerUnit: CalculateElectricityEmissions(farmData),
+		scope3AveragePerCow: CalculateFoodPurchasesEmissions(farmData),
 	};
 };
 
 const CalculateFossilFuelsEmissions = (farmData) => {
-	console.log('fossil fuels');
 	let totalDieselAmount = 0;
 	let totalAcreage = 0;
 	Object.values(farmData).map((farm, index) => {
@@ -29,7 +22,6 @@ const CalculateFossilFuelsEmissions = (farmData) => {
 };
 
 const CalculateElectricityEmissions = (farmData) => {
-	console.log('Electricity');
 	let totalAmountOfElectricity = 0;
 	Object.values(farmData).map((farm, index) => {
 		totalAmountOfElectricity += farm.purchases.Electricity;
@@ -42,7 +34,6 @@ const CalculateElectricityEmissions = (farmData) => {
 };
 
 const CalculateFoodPurchasesEmissions = (farmData) => {
-	console.log('food purchase');
 	let totalAmountOfFeed = 0;
 	let totalNumberOfCows = 0;
 	Object.values(farmData).map((farm, index) => {
@@ -56,4 +47,6 @@ const CalculateFoodPurchasesEmissions = (farmData) => {
 	return averageEmissionsForOneCow;
 };
 
-module.exports = calculateTotalEmissionsForFarmData;
+module.exports = {
+	CalculateTotalAverageEmissions,
+};

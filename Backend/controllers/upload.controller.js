@@ -1,6 +1,6 @@
 const uploadFile = require('../services/uploadFile');
-const readFarmData = require('../services/readFarmData');
-const myCache = require('../services/cache');
+const readFarmData = require('../services/initialSetup');
+const myCache = require('../utils/cache');
 
 const upload = async (req, res) => {
 	try {

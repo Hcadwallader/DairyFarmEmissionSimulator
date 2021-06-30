@@ -6,12 +6,18 @@ const farmcontroller = require('../controllers/farm.controller');
 let routes = (app) => {
 	router.post('/upload', uploadcontroller.upload);
 
+	router.get('/', function (req, res) {
+		res.send('Api is running');
+	});
+
 	router.post('/farm', farmcontroller.farm);
 
 	app.use(express.json());
-	app.use(express.urlencoded({
-		extended: true
-	}));
+	app.use(
+		express.urlencoded({
+			extended: true,
+		})
+	);
 
 	app.use(router);
 };

@@ -1,10 +1,14 @@
 const EmissionReport = ({ emissionData }) => (
 	<div className="white-box page-container">
 		<div className="component-container">
-			<h3>Emissions per litre of milk for </h3>
+			<h3>Emissions for {emissionData.name} </h3>
+			<p>Diesel: {emissionData.scope1} kgCO2e </p>
+			<p>Electricity: {emissionData.scope2} kgCO2e</p>
+			<p>Food: {emissionData.scope3} kgCO2e</p>
+			<p>Total emissions: {emissionData.totalEmissions} kgCO2e</p>
 			<p>
-				Emissions per litre for {emissionData.name}:{' '}
-				{emissionData.perLiterOfMilk} kgCO2e
+				Emissions per litre of milk: {emissionData.perLitreOfMilk}{' '}
+				kgCO2e
 			</p>
 		</div>
 	</div>

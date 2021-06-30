@@ -1,4 +1,4 @@
-const myCache = require('./cache');
+const myCache = require('../utils/cache');
 
 let CalculateEmissionsForInputtedFarm = (req, res) => {
 	let averageEmissions = myCache.get('averageEmissions');
@@ -17,31 +17,28 @@ let CalculateEmissionsForInputtedFarm = (req, res) => {
 	let farmEmissions = {};
 
 	// already have averages for each, so multiply them out to work out specifics for this farm
-	farmEmissions['scope1'] = (
-		averageEmissions['scope1AveragePerAcre'] * req.body.size
+	farmEmissions.scope1 = (
+		averageEmissions.scope1AveragePerAcre * req.body.size
 	).toFixed(2);
-	farmEmissions['scope2'] = (
-		averageEmissions['scope2AveragePerUnit'] * req.body.milkMachines
+	farmEmissions.scope2 = (
+		averageEmissions.scope2AveragePerUnit * req.body.milkMachines
 	).toFixed(0);
-	farmEmissions['scope3'] = (
-		averageEmissions['scope3AveragePerCow'] * req.body.numberOfCows
+	farmEmissions.scope3 = (
+		averageEmissions.scope3AveragePerCow * req.body.numberOfCows
 	).toFixed(0);
 
-	farmEmissions['totalEmissions'] =
-		farmEmissions['scope1'] +
-		farmEmissions['scope2'] +
-		farmEmissions['scope3'];
+	farmEmissions.totalEmissions =
+		farmEmissions.scope1 + farmEmissions.scope2 + farmEmissions.scope3;
 
-	farmEmissions['perLiterOfMilk'] = (
-		farmEmissions['totalEmissions'] / req.body.quantityOfMilk
+	farmEmissions.perLitreOfMilk = (
+		farmEmissions.totalEmissions / req.body.quantityOfMilk
 	).toFixed(2);
-	farmEmissions['name'] = req.body.name;
+	farmEmissions.name = req.body.name;
 
 	return farmEmissions;
 };
 
 const invalidInput = (input) => {
-	console.log(input);
 	if (input === undefined || input === {}) {
 		return true;
 	} else if (
