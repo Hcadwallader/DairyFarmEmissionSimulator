@@ -2,7 +2,7 @@ const Excel = require('exceljs');
 var path = require('path');
 var filePath = path.resolve(__dirname, '../resources/uploads/farmdata.xlsx');
 const wb = new Excel.Workbook();
-const CalculateTotalEmissions = require('../services/calculateEmissions');
+const calculateTotalEmissionsForFarmData = require('./calculateEmissionsForFarmData');
 
 const readFarmData = (myCache) => {
 	console.log('About to start reading file at ' + filePath);
@@ -91,7 +91,7 @@ const readFarmData = (myCache) => {
 			return details; // if the name is null assume we've reached the end of the table
 		})
 		.then((details) => {
-			let emissions = CalculateTotalEmissions(details);
+			let emissions = calculateTotalEmissionsForFarmData(details);
 			console.log(emissions);
 			myCache.set('averageEmissions', emissions);
 		});

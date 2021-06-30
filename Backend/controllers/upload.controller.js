@@ -1,6 +1,6 @@
 const uploadFile = require('../services/uploadFile');
 const readFarmData = require('../services/readFarmData');
-const NodeCache = require('node-cache');
+const myCache = require('../services/cache');
 
 const upload = async (req, res) => {
 	try {
@@ -24,7 +24,6 @@ const upload = async (req, res) => {
 			message: `Could not upload the file: ${req.file.originalname}. ${err}`,
 		});
 	}
-	const myCache = new NodeCache();
 	readFarmData(myCache);
 };
 

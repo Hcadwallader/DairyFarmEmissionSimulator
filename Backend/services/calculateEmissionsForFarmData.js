@@ -1,14 +1,5 @@
-const NodeCache = require('node-cache');
 
-let CalculateEmissionsForFarm = (req, res) => {
-	const myCache = new NodeCache();
-	let value = myCache.get('farmData');
-	console.log(value);
-	console.log(req.body);
-	return req.body;
-};
-
-let CalculateTotalAverageEmissions = (farmData) => {
+let calculateTotalEmissionsForFarmData = (farmData) => {
 	let scope1AveragePerAcre = CalculateFossilFuelsEmissions(farmData);
 	console.log(scope1AveragePerAcre);
 	let scope2AveragePerUnit = CalculateElectricityEmissions(farmData);
@@ -65,7 +56,4 @@ const CalculateFoodPurchasesEmissions = (farmData) => {
 	return averageEmissionsForOneCow;
 };
 
-module.exports = {
-	CalculateTotalAverageEmissions,
-	CalculateEmissionsForFarm,
-};
+module.exports = calculateTotalEmissionsForFarmData;
