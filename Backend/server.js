@@ -5,7 +5,7 @@ const app = express();
 global.__basedir = __dirname;
 
 var corsOptions = {
-	origin: 'http://localhost:3000',
+    origin: 'http://localhost:3000',
 };
 
 app.use(cors(corsOptions));
@@ -17,5 +17,5 @@ initRoutes(app);
 
 let port = 3001;
 app.listen(port, () => {
-	console.log(`Running at localhost:${port}`);
+    console.log(`Running at localhost:${port}`);
 });

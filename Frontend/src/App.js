@@ -6,51 +6,51 @@ import FarmDataForm from './components/farmDataForm';
 import EmissionReport from './components/emissionsReport';
 
 const App = () => {
-	const [fileUploaded, setFileUploaded] = useState(false);
-	const [farmDataAdded, setFarmDataAdded] = useState(false);
-	const [farmDetails, setFarmDetails] = useState({
-		name: '',
-		size: '',
-		numberOfCows: '',
-		quantityOfMilk: '',
-		tractors: '',
-		milkMachines: '',
-	});
-	const [emissionData, setEmissionData] = useState({});
+  const [fileUploaded, setFileUploaded] = useState(false);
+  const [farmDataAdded, setFarmDataAdded] = useState(false);
+  const [farmDetails, setFarmDetails] = useState({
+    name: '',
+    size: '',
+    numberOfCows: '',
+    quantityOfMilk: '',
+    tractors: '',
+    milkMachines: '',
+  });
+  const [emissionData, setEmissionData] = useState({});
 
-	const onFileUpload = (e) => {
-		uploadInitialFarmData(e.target.files[0]).then((data) => {
-			setFileUploaded(data);
-		});
-	};
+  const onFileUpload = (e) => {
+    uploadInitialFarmData(e.target.files[0]).then((data) => {
+      setFileUploaded(data);
+    });
+  };
 
-	const handleFarmFormChange = (e) => {
-		const { name, value } = e.target;
-		setFarmDetails({ ...farmDetails, [name]: value });
-	};
+  const handleFarmFormChange = (e) => {
+    const { name, value } = e.target;
+    setFarmDetails({ ...farmDetails, [name]: value });
+  };
 
-	const handleSubmitFarmForm = (e) => {
-		addNewFarm(farmDetails).then((data) => {
-			setFarmDataAdded(data.perLitreOfMilk);
-			setEmissionData(data);
-		});
-	};
+  const handleSubmitFarmForm = (e) => {
+    addNewFarm(farmDetails).then((data) => {
+      setFarmDataAdded(data.perLitreOfMilk);
+      setEmissionData(data);
+    });
+  };
 
-	return (
-		<>
-			{!fileUploaded && <Upload onFileUpload={onFileUpload} />}
-			{fileUploaded && !farmDataAdded && (
-				<FarmDataForm
-					handleFarmFormChange={handleFarmFormChange}
-					handleSubmitFarmForm={handleSubmitFarmForm}
-					farmDetails={farmDetails}
-				/>
-			)}
-			{fileUploaded && farmDataAdded && (
-				<EmissionReport emissionData={emissionData} />
-			)}
-		</>
-	);
+  return (
+      <>
+        {!fileUploaded && <Upload onFileUpload={onFileUpload} />}
+        {fileUploaded && !farmDataAdded && (
+            <FarmDataForm
+                handleFarmFormChange={handleFarmFormChange}
+                handleSubmitFarmForm={handleSubmitFarmForm}
+                farmDetails={farmDetails}
+            />
+        )}
+        {fileUploaded && farmDataAdded && (
+            <EmissionReport emissionData={emissionData} />
+        )}
+      </>
+  );
 };
 
 export default App;
