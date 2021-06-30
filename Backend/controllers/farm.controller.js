@@ -1,20 +1,15 @@
-const CalculateEmissionsForFarm = require('../services/calculateEmissions');
+
+const CalculateEmissionsForInputtedFarm = require('../services/CalculateEmissionsForInputtedFarm.js');
 
 const farm = async (req, res) => {
 	try {
-		await CalculateEmissionsForFarm(req, res);
-		if (req.farm == undefined) {
-			return res
-				.status(400)
-				.send({ message: 'Please include farm data' });
-		}
-
-		res.status(200).send({
-			message: 'FarmDataUploadedCorrectly: ' + req.file.originalname,
-		});
+		let data = await CalculateEmissionsForInputtedFarm(req, res)
+			if (data) {
+				res.status(200).send(JSON.stringify(data));
+			}
 	} catch (err) {
 		res.status(500).send({
-			message: `Could not upload the data: ${err}`,
+			message: `Could not calculate emissions: ${err}`,
 		});
 	}
 };

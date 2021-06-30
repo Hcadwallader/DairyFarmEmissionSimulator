@@ -9,7 +9,7 @@ const App = () => {
 		name: '',
 		size: '',
 		numberOfCows: '',
-		quatityOfMilk: '',
+		quantityOfMilk: '',
 		tractors: '',
 		milkMachines: '',
 	});
@@ -25,7 +25,9 @@ const App = () => {
 		setFarmDetails({ ...farmDetails, [name]: value });
 	};
 
-	const handleSubmitFarmForm = (e, farmDetails) => {
+	const handleSubmitFarmForm = (e) => {
+		console.log("SCHWAN: farmData = ");
+		console.log(farmDetails);
 		addNewFarm(farmDetails);
 	};
 

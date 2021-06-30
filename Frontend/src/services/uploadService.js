@@ -10,8 +10,9 @@ export const uploadInitialFarmData = async (data) => {
 
 export const addNewFarm = async (data) => {
 	let response = await fetch('http://localhost:3001/farm', {
+		headers: { 'Content-Type': 'application/json; charset=utf-8' },
 		method: 'POST',
-		body: data,
+		body: JSON.stringify(data),
 	});
 	return response.json();
 };
