@@ -45,9 +45,9 @@ const FarmDataForm = ({
 				<div className="form-item">
 					<input
 						type="text"
-						name="quatityOfMilk"
-						id="quatityOfMilk"
-						value={farmDetails.quatityOfMilk}
+						name="quantityOfMilk"
+						id="quantityOfMilk"
+						value={farmDetails.quantityOfMilk}
 						onChange={(e) => handleFarmFormChange(e)}
 						onBlur={(e) => handleFarmFormChange(e)}
 						placeholder="Please enter the number of litres of milk produced"
