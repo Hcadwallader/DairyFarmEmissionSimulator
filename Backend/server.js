@@ -1,8 +1,21 @@
+const cors = require('cors');
 const express = require('express');
 const app = express();
 
-app.get('/', function (req, res) {
-	res.send('Hello world');
-});
+global.__basedir = __dirname;
 
-app.listen(3001);
+var corsOptions = {
+    origin: 'http://localhost:3000',
+};
+
+app.use(cors(corsOptions));
+
+const initRoutes = require('./routes');
+
+app.use(express.urlencoded({ extended: true }));
+initRoutes(app);
+
+let port = 3001;
+app.listen(port, () => {
+    console.log(`Running at localhost:${port}`);
+});
