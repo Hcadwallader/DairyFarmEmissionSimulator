@@ -1,4 +1,4 @@
-const EmissionReport = ({ emissionData }) => (
+const EmissionsSummary = ({ emissionData }) => (
 	<div className="white-box page-container">
 		<div className="component-container">
 			<h3>Emissions for {emissionData.name} </h3>
@@ -17,4 +17,4 @@ const EmissionReport = ({ emissionData }) => (
 	</div>
 );
 
-export default EmissionReport;
+export default EmissionsSummary;
