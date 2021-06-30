@@ -1,6 +1,6 @@
 const Upload = ({ onFileUpload }) => (
 	<div className="white-box page-container">
-		<div className="form-container">
+		<div className="component-container">
 			<label>Upload Your File </label>
 			<input
 				type="file"

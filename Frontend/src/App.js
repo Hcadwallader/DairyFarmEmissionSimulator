@@ -19,10 +19,10 @@ const App = () => {
 	const [emissionData, setEmissionData] = useState({});
 
 	const onFileUpload = (e) => {
-		const uploadSuccess = uploadInitialFarmData(e.target.files[0]).then(
-			(data) => console.log(data)
-		);
-		setFileUploaded(uploadSuccess);
+		uploadInitialFarmData(e.target.files[0]).then((data) => {
+			console.log(data);
+			setFileUploaded(data);
+		});
 	};
 
 	const handleFarmFormChange = (e) => {

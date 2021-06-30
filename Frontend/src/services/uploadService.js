@@ -5,7 +5,8 @@ export const uploadInitialFarmData = async (data) => {
 		method: 'POST',
 		body: formData,
 	});
-	return response.json();
+	const uploadResponse = await response.json();
+	return uploadResponse;
 };
 
 export const addNewFarm = async (data) => {
